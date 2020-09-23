@@ -8,6 +8,7 @@ export const addTodo = (id, description) => ({
   type: ADD_TODO,
   data: { id, description },
 });
+
 export const deleteTodo = (id) => ({ type: DELETE_TODO, data: id });
 export const updateTodo = (id, description) => ({
   type: UPDATE_TODO,
