@@ -3,6 +3,7 @@ const DEV_URL = "http://localhost:3000";
 describe("CRUD flow - ui-todo", () => {
   before(() => {
     cy.visit(DEV_URL).wait(1000);
+    cy.get("[data-cy=todo-task__button-delete").click({ multiple: true })
   });
 
   it("should display header", () => {
@@ -21,4 +22,18 @@ describe("CRUD flow - ui-todo", () => {
       "Buy GroceriesWrite TODO appSend masks to grandma"
     );
   });
+  
+  it("should be able to delete todo", () => {
+    cy.get("[data-cy=todo-task__button-delete").eq(1).click();
+    cy.get("[data-cy=todo-task__name]").should(
+      "have.text",
+      "Buy GroceriesSend masks to grandma"
+    );
+    cy.get("[data-cy=todo-task__button-delete").eq(1).click();
+    cy.get("[data-cy=todo-task__name]").should(
+      "have.text",
+      "Buy Groceries"
+    );
+  });
+
 });
